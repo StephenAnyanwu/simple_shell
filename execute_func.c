@@ -2,7 +2,7 @@
 /**
  * exec_com - executes a command pass in the terminal.
  * @path_var: PATH environment variable.
- * Return : 0 on success, other value if error.
+ * Return: 0 on success, other value if error.
  */
 int exec_com(char *path_var)
 {
