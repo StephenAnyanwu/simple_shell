@@ -12,10 +12,9 @@ int main(int ac, char **av, char **env)
 	const char *path_var = "PATH";
 	char *path = NULL;
 
-	printf("alx");	
 	if ( ac > 1)
 	{
-		perror("Error");
+		printf("anya_shell$: %s: No such file or directory\n", av[ac - 1]);
 		return (-1);
 	}
 	path = _getenv(env, path_var);
