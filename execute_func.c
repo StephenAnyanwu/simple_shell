@@ -1,5 +1,4 @@
 #include "anya_shell.h"
-
 /**
  * exec_com - executes a command pass in the terminal.
  * @path_var: PATH environment variable.
@@ -7,30 +6,20 @@
  */
 int exec_com(char *path_var)
 {
-	/* counts how any times we run command on the p */
 	unsigned long int prompt_count = 1;
-	int non_iteractive = 0;
-	char *command;
-	/* a null_terminated array of strings/poineters */
-	char **argv = NULL, **argv_formatted = NULL;
-	int i;
-	int wstatus, execve_RV;
+	char *command, **argv = NULL, **argv_formatted = NULL;
+	int i, wstatus, execve_RV, non_iteractive = 0, isatty_RV;
 	char *command_fullpath = NULL;
 	pid_t fork_RV;
-	int isatty_RV;
 
 	while (1 && !non_iteractive)
 	{
-		/* check if we are in non-interactive mode */
 		isatty_RV = isatty(STDIN_FILENO);
 		if (isatty_RV == 0)
 			non_iteractive = 1;
-		/* display my custom shell prompt */
 		anya_prompt();
-		/* read command entered by the user */
 		command = read_com();
 		argv = malloc(sizeof(char *) * _strlen(command) + 2);
-		/* null terminaed array of strings */
 		argv = _argv(command);
 		command_fullpath = get_full_path(argv[0], path_var);
 		if (command_fullpath == NULL)
@@ -46,7 +35,6 @@ int exec_com(char *path_var)
 			for (i = 1; i <= argv_len(argv); i++)
 				argv_formatted[i] = argv[i];
 		}
-		/* child process */
 		fork_RV = fork();
 		if (fork_RV == -1)
 		{

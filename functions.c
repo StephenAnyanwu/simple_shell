@@ -17,17 +17,6 @@ int _strlen(char *s)
 }
 
 /**
- * anya_print - prints a string on the stdout.
- *@str: the string to be printed.
-*/
-int anya_print(char *str)
-{
-	int len = _strlen(str);
-
-	return (write(STDIN_FILENO, str, len));
-}
-
-/**
  * _strcpy - copies a string.
  * @dest:destination.
  * @src: source.

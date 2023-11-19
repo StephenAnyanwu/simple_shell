@@ -2,6 +2,7 @@
 
 /**
  * read_com - reads a command from the terminal.
+ * Return: a pointer to the read command (string).
 */
 char *read_com(void)
 {

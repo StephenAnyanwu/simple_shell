@@ -1,5 +1,4 @@
 #include "anya_shell.h"
-
 /**
   * get_full_path - get the full path of the a command from
   * the PATH environment variable.
@@ -9,12 +8,9 @@
 */
 char *get_full_path(char *command, char *var)
 {
-	int command_len = _strlen(command);
-	char *environ_var = NULL;
-	char *tok = NULL;
-	char *full_path = NULL;
+	int command_len = _strlen(command), stat_RV;
+	char *environ_var = NULL, *tok = NULL, *full_path = NULL;
 	struct stat statbuf;
-	int stat_RV;
 
 	stat_RV = stat(command, &statbuf);
 	if (stat_RV == 0)
@@ -42,7 +38,6 @@ char *get_full_path(char *command, char *var)
 		_strcat(full_path, "/");
 		_strcat(full_path, command);
 		stat_RV = stat(full_path, &statbuf);
-		/* chaeck if the file path exist */
 		if (stat_RV == 0)
 		{
 			free(environ_var);
