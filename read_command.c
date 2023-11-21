@@ -1,10 +1,10 @@
 #include "anya_shell.h"
 
 /**
- * read_com - reads a command from the terminal.
+ * read_command - reads acommand from the terminal.
  * Return: a pointer to the read command (string).
 */
-char *read_com(void)
+char *read_command(void)
 {
 	char *buf = NULL;
 	size_t n = 0;

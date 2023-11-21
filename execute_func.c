@@ -1,10 +1,11 @@
 #include "anya_shell.h"
 /**
- * exec_com - executes a command pass in the terminal.
+ * execute_command - executes a command pass in the terminal.
+ * @env: environment.
  * @path_var: PATH environment variable.
  * Return: 0 on success, other value if error.
  */
-int exec_com(char *path_var)
+int execute_command(char **env, char *path_var)
 {
 	unsigned long int prompt_count = 1;
 	char *command, **argv = NULL, **argv_formatted = NULL;
@@ -16,8 +17,9 @@ int exec_com(char *path_var)
 		isatty_RV = isatty(STDIN_FILENO);
 		if (isatty_RV == 0)
 			non_iteractive = 1;
-		anya_prompt();
-		command = read_com();
+		else
+			anya_prompt();
+		command = read_command();
 		argv = malloc(sizeof(char *) * _strlen(command) + 2);
 		argv = _argv(command);
 		command_fullpath = get_full_path(argv[0], path_var);
@@ -34,7 +36,7 @@ int exec_com(char *path_var)
 			for (i = 1; i <= argv_len(argv); i++)
 				argv_formatted[i] = argv[i];
 		}
-		process(argv_formatted[0], argv_formatted, NULL);
+		process(argv_formatted[0], argv_formatted, env);
 		prompt_count++;
 	}
 	free(command);

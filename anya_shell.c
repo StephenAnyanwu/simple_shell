@@ -18,6 +18,6 @@ int main(int ac, char **av, char **env)
 		return (-1);
 	}
 	path = _getenv(env, path_var);
-	exec_com(path);
+	execute_command(env, path);
 	return (0);
 }

@@ -9,11 +9,11 @@
 #include <fcntl.h>
 #include <sys/stat.h>
 int anya_prompt(void);
-char *read_com(void);
+char *read_command(void);
 char **_argv(char *com);
 int argv_len(char **command);
 int _execve(char *pathname, char **argv, char **env);
-int exec_com(char *path_var);
+int execute_command(char **env, char *path_var);
 int process(char *c, char **av, char **env);
 char *get_full_path(char *command, char *var);
 ssize_t anya_getline(char **buffer, size_t *n, FILE *stream);
